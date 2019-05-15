@@ -1,0 +1,8 @@
+library(arules)
+library(arulesViz)
+data(Groceries)
+grocery_itemsets <- apriori(data=Groceries,parameter=list(support = 0.002,confidence = 0.6,minlen = 2,target="frequent itemsets"))
+grocery_rules <- apriori(data=Groceries,parameter=list(support = 0.002,confidence = 0.6,minlen = 2,target="rules"))
+#inspect(sort(grocery_itemsets))
+plot(grocery_rules)
+inspect(sort(grocery_rules,by="confidence")[1:10])
