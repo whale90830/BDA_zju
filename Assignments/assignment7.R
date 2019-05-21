@@ -1,0 +1,11 @@
+library(tseries)
+library(forecast)
+dc<-decompose(AirPassengers)
+plot(dc)
+season<-dc$figure
+plot(season,type = "b",xaxt="n",xlab = "")
+a<-auto.arima(AirPassengers)
+print(a)
+fit<-arima(AirPassengers,order = c(2,1,1),seasonal = list(order=c(0,1,0),period=12))
+airforecast <- forecast(fit)
+plot(airforecast)
